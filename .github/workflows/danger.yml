@@ -6,17 +6,14 @@ jobs:
   danger:
     runs-on: ubuntu-latest
     if: github.event_name  == 'pull_request'
+    env:
+      BUNDLE_GEMFILE: ${{ github.workspace }}/.github/Gemfile
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-ruby@v1
+    - uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '2.6'
-    - uses: actions/cache@v1
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gems-${{ hashFiles('.github/Gemfile') }}
-        restore-keys: |
-          ${{ runner.os }}-gems-
+        ruby-version: 2.6
+        bundler-cache: true
 
     - name: Setup PHP environment
       uses: shivammathur/setup-php@v2
@@ -25,7 +22,7 @@ jobs:
         coverage: none
         tools: phpmd
 
-    - run: bundle exec danger
+    - run: bundle exec --gemfile=.github/Gemfile danger --dangerfile=.github/Dangerfile
       env:
         DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
