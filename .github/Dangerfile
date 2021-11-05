@@ -1,12 +1,4 @@
 
-phpmd = `phpmd . json phpmd.xml`
-results = JSON.parse phpmd
-unless results.empty?
-  results['files'].each do |line|
-    file = line['file'].sub("/home/runner/work/php-sandbox/php-sandbox/", "")
-    line['violations'].each do |violation|
-      warn(violation['description'], file: file, line: violation['beginLine'])
-    end
-  end
-end
+phpmd.config_path = "phpmd.xml"
+phpmd.run
 

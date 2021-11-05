@@ -1,4 +1,4 @@
 source 'http://rubygems.org'
 
 gem 'danger'
-
+gem "danger-phpmd", :github => "ktakayama/danger-phpmd"
