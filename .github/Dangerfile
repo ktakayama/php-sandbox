@@ -1,4 +1,3 @@
 
-phpmd.config_path = "phpmd.xml"
-phpmd.run
+phpmd.run ruleset: "phpmd.xml"
 
