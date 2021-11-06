@@ -6,8 +6,6 @@ jobs:
   danger:
     runs-on: ubuntu-latest
     if: github.event_name  == 'pull_request'
-    env:
-      BUNDLE_GEMFILE: ${{ github.workspace }}/.github/Gemfile
     steps:
     - uses: actions/checkout@v2
     - uses: ruby/setup-ruby@v1
@@ -22,7 +20,7 @@ jobs:
         coverage: none
         tools: phpmd
 
-    - run: bundle exec --gemfile=.github/Gemfile danger --dangerfile=.github/Dangerfile
+    - run: bundle exec danger
       env:
         DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
