@@ -30,6 +30,8 @@ GEM
       danger-plugin-api (~> 1.0)
     danger-plugin-api (1.0.0)
       danger (> 2.0)
+    danger-typos (0.1.0)
+      danger-plugin-api (~> 1.0)
     faraday (2.12.2)
       faraday-net_http (>= 2.0, < 3.5)
       json
@@ -72,6 +74,7 @@ PLATFORMS
 DEPENDENCIES
   danger
   danger-phpmd
+  danger-typos
 
 BUNDLED WITH
    2.6.2
